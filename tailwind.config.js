@@ -36,7 +36,9 @@ module.exports = {
       violet: colors.violet,
       purple: colors.purple,
       fuchsia: colors.fuchsia,
-      pink: colors.pink,
+      pink: {
+        DEFAULT: "#D8676F"
+      },
       rose: colors.rose,
     }),
     columns: {
@@ -343,23 +345,8 @@ module.exports = {
       DEFAULT: '1',
     },
     fontFamily: {
-      sans: [
-        'ui-sans-serif',
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        '"Noto Sans"',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
-      ],
-      serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      sans: ["Cabin"],
+      serif: ["Rokkitt"],
       mono: [
         'ui-monospace',
         'SFMono-Regular',
@@ -953,7 +940,12 @@ module.exports = {
     }
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    require('postcss-import'),
+    require("tailwindcss"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/aspect-ratio"),
 
   ],
 }
