@@ -2,7 +2,7 @@
   <!--
     eslint-disable
   -->
-  <section class="relative bg-gray-50 py-16 sm:py-24 lg:py-32">
+  <section class="relative bg-gray-50 py-16">
 
     <div class="absolute inset-0">
       <div class="bg-white h-1/3 sm:h-2/3"></div>
@@ -26,11 +26,13 @@
             <div class="flex-1 bg-white p-6 flex flex-col justify-between">
 
               <div class="flex-1">
-                <p class="text-sm font-medium text-indigo-600">
+                <!--
+                <p class="text-l font-bold">
                   <a :href="post.slug" class="hover:underline">
                     {{ post.categoryTitle }}
                   </a>
                 </p>
+                -->
                 <a :href="post.slug" class="block mt-2">
                   <p class="text-xl font-semibold text-gray-900">
                     {{ post.categoryTitle }}

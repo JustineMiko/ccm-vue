@@ -9,6 +9,7 @@
         :posts="categories"
       />
     </div>
+
     <div>
       <AboutCard
         title="Pourquoi ce blog ?" 
@@ -19,18 +20,32 @@
         conclusion="J'espère que ce blog vous plaira et si vous voulez découvrir mes trois chats testeurs de compétitions, cliquez sur le lien suivant (il sont en photos et sont trop mignons !):"
       />
     </div>
+
+    <div>
+      <QuoteCard
+        quotedSentence="Je suis belle, je le sais, mais ne vous fiez pas aux apparences... ma passion ? Essayer de détruire tous les jouets que m'achète ma maîtresse !"
+        name="Malia"
+        role="Princess Crotty"
+      />
+    </div>
+
+    <FooterComponent />
   </div>
 </template>
 
 <script>
 import BlogSection from './components/BlogSection.vue'
 import AboutCard from './components/AboutCard.vue'
+import QuoteCard from './components/QuoteCard.vue'
+import FooterComponent from './components/FooterComponent.vue'
 
 export default {
   name: 'App',
   components: {
     BlogSection,
     AboutCard,
+    QuoteCard,
+    FooterComponent
   },
   data: function() {
     return {
