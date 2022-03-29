@@ -1,163 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.jpeg">
-
-    <div>
-      <BlogSection 
-        title='Cats Crazy Market'
-        intro='Découvrez tous les conseils pour les chats et par des chats !'
-        :posts="categories"
-      />
-    </div>
-
-    <div>
-      <AboutCard
-        title="Pourquoi ce blog ?" 
-        description="Avant d'ouvrir ma boutique en ligne d'accessoires pour chats, mes chats testaient déjà plein d'accessoires. Donc ce blog est un retour à mon activité initiale favorite. Vous trouverez ici :"
-        line1="Des avis de chats rédigés de façon objective mais avec humour !"
-        line2="Des articles de conseils sur les chats car oui en ayant trois chats depuis plusieurs années je commence à m'y connaître un peu !"
-        line3="Une sélection de prénoms de chats sous forme d'article annuel pour être en phase avec les tendances du momment."
-        conclusion="J'espère que ce blog vous plaira et si vous voulez découvrir mes trois chats testeurs de compétitions, cliquez sur le lien suivant (il sont en photos et sont trop mignons !):"
-      />
-    </div>
-
-    <div>
-      <QuoteCard
-        quotedSentence="Je suis belle, je le sais, mais ne vous fiez pas aux apparences... ma passion ? Essayer de détruire tous les jouets que m'achète ma maîtresse !"
-        name="Malia"
-        role="Princess Crotty"
-      />
-    </div>
-
-    <FooterComponent />
+    <nav>
+      <a href="/">
+        <img class="h-20 w-auto" src="./assets/logo.jpeg" alt="logo cats crazy market" />
+      </a>
+      <router-link to="/" class="text-sm text-gray-500 hover:active:text-pink active:text-pink">Accueil</router-link> |
+      <router-link to="/about" class="text-sm text-gray-500 active:text-pink">A propos</router-link> |
+      <router-link to="/tests-avis-de-chats" class="text-sm text-gray-500 active:text-pink">Tests et Avis</router-link>
+    </nav>
+    <router-view/>
   </div>
 </template>
-
-<script>
-import BlogSection from './components/BlogSection.vue'
-import AboutCard from './components/AboutCard.vue'
-import QuoteCard from './components/QuoteCard.vue'
-import FooterComponent from './components/FooterComponent.vue'
-
-export default {
-  name: 'App',
-  components: {
-    BlogSection,
-    AboutCard,
-    QuoteCard,
-    FooterComponent
-  },
-  data: function() {
-    return {
-      items: [
-        {
-          title: 'Boost your conversion rate',
-          href: 'www.google.com',
-          category: { name: 'Article', href: '#' },
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.',
-          date: 'Mar 16, 2020',
-          datetime: '2020-03-16',
-          imageUrl:
-            'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-          readingTime: '6 min',
-          author: {
-            name: 'Roel Aufderehar',
-            href: 'www.google.com',
-            imageUrl:
-              'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-          },
-        },
-        {
-          title: 'How to use search engine optimization to drive sales',
-          href: 'www.google.com',
-          category: { name: 'Video', href: '#' },
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.',
-          date: 'Mar 10, 2020',
-          datetime: '2020-03-10',
-          imageUrl:
-            'https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-          readingTime: '4 min',
-          author: {
-            name: 'Brenna Goyette',
-            href: 'www.google.com',
-            imageUrl:
-              'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-          },
-        },
-        {
-          title: 'Improve your customer experience',
-          href: 'www.google.com',
-          category: { name: 'Case Study', href: '#' },
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.',
-          date: 'Feb 12, 2020',
-          datetime: '2020-02-12',
-          imageUrl:
-            'https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80',
-          readingTime: '11 min',
-          author: {
-            name: 'Daniela Metz',
-            href: 'www.google.com',
-            imageUrl:
-              'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-          },
-        },
-      ],
-      categories: []
-    }
-  },
-  async created() {
-    this.categories = await this.getCategories();
-  },
-  methods: {
-    getCategories: async () => {
-      const query = `{
-        categoryCollection {
-          items {
-            categoryTitle
-            slug
-            categoryDescription
-            categoryImage {
-              title
-              description
-              contentType
-              fileName
-              size
-              url
-              width
-              height
-            }
-          }
-        }
-      }`;
-      const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.VUE_APP_CONTENTFUL_SPACE_ID}`;
-      const fetchOptions = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          query
-        })
-      };
-
-      try {
-        const response = await fetch(fetchUrl, fetchOptions).then(result =>
-          result.json()
-        );
-        return response.data.categoryCollection.items;
-      } catch (error) {
-        throw new Error("Could not receive the data from Contentful!");
-      }
-    }
-  }
-
-};
-
-</script>
 
 <style>
 #app {
@@ -165,7 +18,38 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+}
+
+nav a.router-link-exact-active {
 }
 </style>
+
+<!--
+
+<template>
+  <header class="bg-white">
+    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+      <div class="w-full py-6 flex items-center justify-between border-b border-pink lg:border-none">
+          <a href="/">
+            <img class="h-10 w-auto" src="./assets/logo.jpeg" alt="logo cats crazy market" />
+          </a>
+         <nav class="hidden ml-10 space-x-8 lg:block">
+          <router-link to="/" class="text-xl font-semibold hover:text-pink">Accueil</router-link> |
+          <router-link to="/about" class="text-xl font-semibold hover:text-pink">A propos</router-link>
+          <router-link to="/tests-avis-de-chats" class="text-xl font-semibold hover:text-pink">Tests et Avis</router-link>
+        </nav>
+        <router-view/>
+      </div>
+    </div>
+  </header>
+</template>
+
+-->
