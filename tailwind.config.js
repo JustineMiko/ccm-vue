@@ -3,6 +3,11 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      backgroundImage: {
+        'construction': "url('/src/assets/construction.jpg')"
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',
